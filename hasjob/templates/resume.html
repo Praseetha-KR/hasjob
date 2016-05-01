@@ -68,7 +68,40 @@
           </div>
         </div>
       </section>
-
+      <section class="resume__projects">
+        <h2 class="resume__section-title">Projects</h2>
+        {% for project in resume.projects %}
+          <div class="resume__projects-item">
+            <div class="row">
+              <!-- <div class="col-sm-2 gray">Project</div> -->
+              <div class="col-sm-12">
+                <strong>{{ project.title }}</strong>
+              </div>
+            </div>
+            <div class="row">
+              <!-- <div class="col-sm-2">Role</div> -->
+              <div class="col-sm-12">
+                {{ project.role }}
+              </div>
+            </div>
+            <div class="row">
+              <!-- <div class="col-sm-2">Links</div> -->
+              {% if project.source %}
+                <div class="col-sm-12">
+                  <strong>source: </strong>
+                  <a href="{{project.source}}" target="_blank">{{project.source}}</a>
+                </div>
+              {% endif %}
+              {% if project.website %}
+                <div class="col-sm-12">
+                  <strong>website: </strong>
+                  <a href="{{project.website}}" target="_blank">{{project.website}}</a>
+                </div>
+              {% endif %}
+            </div>
+          </div>
+        {% endfor %}
+      </section>
       <section class="work">
         <ul>
           {% for work in resume.work %}
@@ -78,11 +111,11 @@
               </h4>
               <h5>{{ work.position }}</h5>
               <p>{{ work.summary }}</p>
-              <ul>
+              <!-- <ul>
                 {% for highlight in work.highlights %}
                   <li>{{ highlight }}</li>
                 {% endfor %}
-              </ul>
+              </ul> -->
               <time>{{ work.startDate }} - {{ work.endDate }}</time>
             </li>
           {% endfor %}

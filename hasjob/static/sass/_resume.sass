@@ -3,6 +3,9 @@ $resume__avatar-border: 0.7em
 
 .resume
   box-sizing: border-box
+  &__section-title
+    padding-top: 1em
+    text-align: center
   &__basics
     background-color: $color-resume-header
     margin: -12px -30px 0
@@ -19,3 +22,9 @@ $resume__avatar-border: 0.7em
     border-radius: 50%
     border: $resume__avatar-border solid lighten($color-title-geek, 20%)
     box-shadow: 0 0 0 $resume__avatar-border lighten($color-title-geek, 40%)
+  &__projects
+    &-item
+      border: 1px solid $color-outline-thin
+      margin-bottom: 1em
+      border-radius: 0.2em
+      padding: 1em
