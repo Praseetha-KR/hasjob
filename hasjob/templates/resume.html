@@ -26,7 +26,74 @@
 {% block content %}
   <div itemscope itemtype="http://schema.org/Article" class="sheet">
     <div class="section first">
-      <h1>{{ user.fullname }}</h1>
+      <section class="basics">
+        <div class="row">
+          <div class="col-xs-2">
+            <section class="avatar">
+              <img src="{{ resume.basics.picture }}" alt="">
+            </section>
+          </div>
+          <div class="col-xs-5">
+            <section class="identity">
+              <h1>{{ resume.basics.name }}</h1>
+              <h4>{{ resume.basics.label }}</h4>
+            </section>
+            <section class="socialmedia">
+              {% for profile in resume.basics.profiles %}
+                <a href="{{ profile.url }}"><i class="{{ profile.icon }}"></i>&nbsp;{{ profile.username }}</a>
+              {% endfor %}
+            </section>
+          </div>
+          <div class="col-xs-5">
+            <section class="contact">
+              <div>
+                <i class="fa fa-envelope-o"></i>
+                <a href="mailto:{{ resume.basics.email }}">{{ resume.basics.email }}</a>
+              </div>
+              <div>
+                <i class="fa fa-phone"></i>
+                <a href="tel:{{ resume.basics.phone }}">{{ resume.basics.phone }}</a>
+              </div>
+              <div>
+                <i class="fa fa-link"></i>
+                <a href="{{ resume.basics.website }}" target="_blank">{{ resume.basics.website }}</a>
+              </div>
+              <div>
+                <i class="fa fa-map-marker"></i>
+                <address>{{ resume.basics.location.address }}, {{ resume.basics.location.city }} - {{ resume.basics.location.postalCode }}</address>
+              </div>
+            </section>
+          </div>
+        </div>
+      </section>
+
+      <section class="work">
+        <ul>
+          {% for work in resume.work %}
+            <li>
+              <h4>
+                <a href="{{ work.website }}" target="_blank">{{ work.company }}</a>
+              </h4>
+              <h5>{{ work.position }}</h5>
+              <p>{{ work.summary }}</p>
+              <ul>
+                {% for highlight in work.highlights %}
+                  <li>{{ highlight }}</li>
+                {% endfor %}
+              </ul>
+              <time>{{ work.startDate }} - {{ work.endDate }}</time>
+            </li>
+          {% endfor %}
+          {% for education in resume.education %}
+            <li>
+              <h4>{{ education.institution }}</h4>
+              <h5>{{ education.studyType }} in {{ education.area }}</h5>
+              <p>GPA: {{ education.gpa }}</p>
+              <time>{{ education.startDate }} - {{ education.endDate }}</time>
+            </li>
+          {% endfor %}
+        </ul>
+      </section>
     </div>
   </div>
 {% endblock %}
