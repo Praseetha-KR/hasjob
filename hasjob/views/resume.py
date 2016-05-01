@@ -9,8 +9,8 @@ import os
 
 
 @csrf.exempt
-@app.route('/~<username>', subdomain='<subdomain>')
-@app.route('/~<username>')
+@app.route('/@<username>', subdomain='<subdomain>')
+@app.route('/@<username>')
 @render_with({'text/html': 'resume.html'}, json=True)
 @lastuser.requires_login
 def resume(username):
