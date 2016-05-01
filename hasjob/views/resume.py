@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
 
-from flask import g, abort
+from flask import g, abort, json
 from coaster.views import render_with
 from baseframe import csrf
 from ..models import User, JobApplication
 from .. import app, lastuser
+import os
 
 
 @csrf.exempt
@@ -33,5 +34,11 @@ def resume(username):
                 break
     if not view_allowed:
         abort(403)
+
+    # dummy data: resume json
+    resume = json.load(
+        open(os.path.abspath('hasjob/static/resume-dummy.json'), "r")
+    )
+    user.resume = resume
 
     return {'user': user, 'resume': user.resume}
