@@ -124,6 +124,14 @@
           </div>
         {% endfor %}
       </section>
+      <section class="resume_profiles">
+        <h2 class="resume__section-title">Social Profiles</h2>
+        <div class="text-center">
+          {% for profile in resume.basics.profiles %}
+            <a href="{{ profile.url }}"><i class="{{ profile.icon }}"></i>&nbsp;&nbsp;{{ profile.username }}</a>
+          {% endfor %}
+        </div>
+      </section>
       <section class="work">
         <ul>
           {% for work in resume.work %}
