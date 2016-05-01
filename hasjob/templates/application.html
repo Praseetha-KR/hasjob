@@ -25,6 +25,7 @@
           {%- endif %}{% endwith %}
         </p>
         {{ job_application.message|safe }}
+        <a href="/~{{job_application.fullname}}" class="btn btn-default"><i class="fa fa-file-text-o"></i>&nbsp;&nbsp;Resume</a>
         <hr>
         <form id="response_form" method="POST" action="{{ job_application.url_for('process') }}">
           <input type="hidden" name="_charset_"/>
@@ -144,7 +145,7 @@
             // This doesn't work. We don't know why.
             tinymce.execCommand('mceFocus', false, 'response_message');
           }
-        });        
+        });
         $("#response_form").find('button').prop('disabled', true);
         $("#appl-options").slideUp();
         $("#appl-send").val('reject');
