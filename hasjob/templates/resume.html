@@ -102,6 +102,28 @@
           </div>
         {% endfor %}
       </section>
+      <section class="resume__skills">
+        <h2 class="resume__section-title">Skills</h2>
+        {% for skill in resume.skills %}
+          <div class="row">
+            <div class="col-sm-4">
+              {{ skill.name }}
+            </div>
+            <div class="col-sm-4">
+              <div class="progress">
+                <div class="progress-bar progress-bar-warning progress-bar-{{ skill.level }}" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100">
+                  <span class="sr-only">40% Complete (success)</span>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-4">
+              {% for keyword in skill.keywords %}
+                <label class="label label-warning">{{ keyword }}</label>
+              {% endfor %}
+            </div>
+          </div>
+        {% endfor %}
+      </section>
       <section class="work">
         <ul>
           {% for work in resume.work %}
