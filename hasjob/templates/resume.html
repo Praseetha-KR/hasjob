@@ -25,27 +25,27 @@
 {% endblock %}
 {% block content %}
   <div itemscope itemtype="http://schema.org/Article" class="sheet">
-    <div class="section first">
-      <section class="basics">
-        <div class="row">
-          <div class="col-xs-2">
-            <section class="avatar">
-              <img src="{{ resume.basics.picture }}" alt="">
-            </section>
-          </div>
-          <div class="col-xs-5">
-            <section class="identity">
+    <div class="resume section first">
+      <section class="resume__basics">
+        <div class="row contain-height">
+          <div class="col-xs-4 relative contain-height">
+            <section class="resume__identity vertical-center">
               <h1>{{ resume.basics.name }}</h1>
               <h4>{{ resume.basics.label }}</h4>
             </section>
-            <section class="socialmedia">
+            <!-- <section class="socialmedia">
               {% for profile in resume.basics.profiles %}
                 <a href="{{ profile.url }}"><i class="{{ profile.icon }}"></i>&nbsp;{{ profile.username }}</a>
               {% endfor %}
-            </section>
+            </section> -->
           </div>
-          <div class="col-xs-5">
-            <section class="contact">
+          <div class="col-xs-4 relative contain-height">
+            {% if resume.basics.picture %}
+                <img class="resume__avatar vertical-center" src="{{ resume.basics.picture }}" alt="">
+            {% endif %}
+          </div>
+          <div class="col-xs-4 relative contain-height">
+            <section class="resume__contact vertical-center">
               <div>
                 <i class="fa fa-envelope-o"></i>
                 <a href="mailto:{{ resume.basics.email }}">{{ resume.basics.email }}</a>
@@ -54,13 +54,15 @@
                 <i class="fa fa-phone"></i>
                 <a href="tel:{{ resume.basics.phone }}">{{ resume.basics.phone }}</a>
               </div>
-              <div>
-                <i class="fa fa-link"></i>
-                <a href="{{ resume.basics.website }}" target="_blank">{{ resume.basics.website }}</a>
-              </div>
+              {% if resume.basics.website %}
+                  <div>
+                    <i class="fa fa-link"></i>
+                    <a href="{{ resume.basics.website }}" target="_blank">{{ resume.basics.website }}</a>
+                  </div>
+                {% endif %}
               <div>
                 <i class="fa fa-map-marker"></i>
-                <address>{{ resume.basics.location.address }}, {{ resume.basics.location.city }} - {{ resume.basics.location.postalCode }}</address>
+                <span>{{ resume.basics.location.city }}</span>
               </div>
             </section>
           </div>
